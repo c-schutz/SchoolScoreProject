@@ -1,3 +1,10 @@
-# SchoolScoreProject
+In this project we will take in data on school scores
+and answer hypotheses based on these questions.
 
-testing
+Hypotheses:
+
+1. Is there a correlation between income and SAT scoring?
+2. Is there a correlation between a higher GPA and a higher SAT score?
+3. Is there a difference in scoring between genders on certain SAT subjects?
+
+Contributors: Caleb Schutz, Bryant Cao, Nicholas Novak
