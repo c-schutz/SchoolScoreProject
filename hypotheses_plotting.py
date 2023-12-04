@@ -9,6 +9,8 @@ if __name__ == "__main__":
     csv_file = csv.reader(file)
     header = next(csv_file)
 
+
+
     #Get all the rows of data
     rows = []
     for row in csv_file:
@@ -51,4 +53,7 @@ if __name__ == "__main__":
     x_values = fam_income_60to80
     y_values = years
     plt.plot(x_values, y_values)
+    plt.xlabel("Income")
+    plt.ylabel("Years")
     plt.show()
+
