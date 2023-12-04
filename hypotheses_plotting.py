@@ -53,7 +53,7 @@ if __name__ == "__main__":
     x_values = fam_income_60to80
     y_values = years
     plt.plot(x_values, y_values)
-    plt.xlabel("Income")
-    plt.ylabel("Years")
+    plt.xlabel('Income')
+    plt.ylabel('Years')
     plt.show()
 
