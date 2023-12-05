@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
+#import numpy as np
 
 # testing hypotheses about gender and satscores
 # need: Gender.Male.Verbal, Gender.Male.Test-takers,Gender.Male.Math,
@@ -68,6 +68,10 @@ axs[1].set_ylim(min_score-10, max_score+10)
 fig.suptitle("Violin plot of Female and Male Math Test Scores", y=.95)
 
 #creating scatterplot with linear regression line
+
+#this might fix error idk:
+merged_data["year"] = merged_data["year"].astype(float)
+
 
 # create the figure and axes
 fig, ax = plt.subplots(figsize=(10, 10))
