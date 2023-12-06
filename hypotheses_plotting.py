@@ -1,59 +1,30 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import csv
+import seaborn as sns
 
-if __name__ == "__main__":
-    #Hypotheses 1
-    #open the csv file and collect the header
-    file = open("school_scores.csv", "r")
-    csv_file = csv.reader(file)
-    header = next(csv_file)
+# Read the CSV file into a Pandas DataFrame
+df = pd.read_csv("school_scores.csv")
 
+# Specify the states you want to include (FL and CA) and the columns you want to include
+states_to_include = ["FL", "CA"]
+columns_to_include = ["Year", "State.Code", "Total.Math", "Total.Test-takers"]
 
+# Filter the DataFrame based on the specified states
+filtered_df = df.loc[(df["State.Code"].isin(states_to_include)), columns_to_include]
+filtered_df_fl = df.loc[(df["State.Code"] == "FL"), columns_to_include]
+filtered_df_ca = df.loc[(df["State.Code"] == "CA"), columns_to_include]
 
-    #Get all the rows of data
-    rows = []
-    for row in csv_file:
-        rows.append(row)
+# Print the filtered DataFrame
+print(filtered_df)
 
-    #Get one data set from each year
-    rows_diff_years = []
-    for i in range(1, len(rows)):
-        if rows[i][0] != rows[i-1][0]:
-            rows_diff_years.append(rows[i])
+# create the figure and axes
+fig, ax = plt.subplots(figsize=(7, 7))
 
-    #Data points
-    years = []
-    fam_income_20to40 = []
-    fam_income_60to80 = []
-    fam_income_over100 = []
-    score_range_300to400_math = []
-    score_range_300to400_verbal = []
-    score_range_500to600_math = []
-    score_range_500to600_verbal = []
-    score_range_700to800_math = []
-    score_range_700to800_verbal = []
+# add the plots for each dataframe
+sns.regplot(x="Year", y="Total.Math", data=filtered_df_fl, fit_reg=True, ci=None, label='Florida Scores')
+sns.regplot(x="Year", y="Total.Math", data=filtered_df_ca, fit_reg=True, ci=None, ax=ax, label='California Scores')
+ax.set(ylabel='Total Math Scores', xlabel='Years')
+ax.legend()
 
-
-
-    #Collect data from the years
-    for val in rows_diff_years:
-        years.append(val[0])
-        fam_income_20to40.append(val[19])
-        fam_income_60to80.append(val[29])
-        fam_income_over100.append(val[24])
-        score_range_300to400_math.append(val[71])
-        score_range_300to400_verbal.append(val[74])
-        score_range_500to600_math.append(val[83])
-        score_range_500to600_verbal.append(val[86])
-        score_range_700to800_math.append(val[95])
-        score_range_700to800_verbal.append(val[98])
-
-    #Graphing (in progress)
-    x_values = fam_income_60to80
-    y_values = years
-    plt.plot(x_values, y_values)
-    plt.xlabel('Incomes')
-    plt.ylabel('Years')
-    plt.show()
-
+plt.show()
