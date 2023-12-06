@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import csv
 import seaborn as sns
+from statistic_tests import calc_t_test
 
 #Hypothesis 1
 # Read the CSV file into a Pandas DataFrame
@@ -110,3 +111,11 @@ ax.set(ylabel='Mean Math Score ', xlabel='Years')
 ax.legend()
 
 plt.show()
+pd.options.display.width= None
+pd.options.display.max_columns= None
+pd.set_option('display.max_rows', 575)
+pd.set_option('display.max_columns', 1000)
+
+print(calc_t_test(data_set, "Gender.Male.Math","Gender.Female.Math",
+                  "male math scores", "female math scores",
+                  "Gender.Male.Test-takers", "Gender.Female.Test-takers"))
