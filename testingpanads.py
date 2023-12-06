@@ -47,8 +47,9 @@ male_math = merged_data["avg_male_math_score"]
 min_score = min(female_math.min(), male_math.min())
 max_score = max(female_math.max(), male_math.max())
 
+
 # creating violin graph, takes test score of gender
-fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(7.5, 6.5))
+fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(6, 6.5))
 
 
 # plotting female graph
@@ -56,14 +57,14 @@ axs[0].violinplot(female_math)
 axs[0].set_title('Females')
 axs[0].set_xlabel("Distribution of scores")
 axs[0].set_ylabel('test scores')
-axs[0].set_ylim(min_score-10, max_score+10)
+axs[0].set_ylim(min_score-5, max_score+5)
 #axs[0].violinplot(female_math)
 
 axs[1].violinplot(male_math)
 axs[1].set_xlabel("Distribution of scores")
 axs[1].set_ylabel("Test Score")
 axs[1].set_title("Males")
-axs[1].set_ylim(min_score-10, max_score+10)
+axs[1].set_ylim(min_score-5, max_score+5)
 
 fig.suptitle("Violin plot of Female and Male Math Test Scores", y=.95)
 
@@ -74,12 +75,12 @@ merged_data["year"] = merged_data["year"].astype(float)
 
 
 # create the figure and axes
-fig, ax = plt.subplots(figsize=(10, 10))
+fig, ax = plt.subplots(figsize=(7, 7))
 
 # add the plots for each dataframe
-sns.regplot(x="year", y="avg_female_math_score", data=merged_data, fit_reg=True, ci=None, label='df1')
-sns.regplot(x="year", y="avg_male_math_score", data=merged_data, fit_reg=True, ci=None, ax=ax, label='df2')
-ax.set(ylabel='y', xlabel='x')
+sns.regplot(x="year", y="avg_female_math_score", data=merged_data, fit_reg=True, ci=None, label='Female Math Score')
+sns.regplot(x="year", y="avg_male_math_score", data=merged_data, fit_reg=True, ci=None, ax=ax, label='Male Math Score')
+ax.set(ylabel='Mean Math Score ', xlabel='Years')
 ax.legend()
 
 plt.show()
